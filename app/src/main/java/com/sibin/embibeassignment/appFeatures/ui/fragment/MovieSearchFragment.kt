@@ -82,7 +82,7 @@ class MovieSearchFragment : BaseFragment() {
         recycler_view.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         moviesAdapter =
-            MovieListAdapter(searchViewModel.imageBaseUrl) { movie ->
+            MovieListAdapter(searchViewModel.imageBaseUrl!!) { movie ->
                 logDebug("movie $movie")
                 searchViewModel.addOrRemoveBookmark(movie)
             }

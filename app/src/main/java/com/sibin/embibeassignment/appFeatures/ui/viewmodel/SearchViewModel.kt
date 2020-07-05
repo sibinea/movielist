@@ -24,8 +24,10 @@ class SearchViewModel @Inject constructor(
     var movieList: MutableLiveData<List<MovieDetails>> = MutableLiveData()
     var searchQuery = String.empty()
     private var nextPage = 1
-    val imageBaseUrl = preferences.getData(SharedPreferenceKeys.IMAGE_SECURE_BASE_URL)
-        ?: SharedPreferenceKeys.IMAGE_SECURE_BASE_URL_DEFAULT
+    val imageBaseUrl =
+        if (!preferences.getData(SharedPreferenceKeys.IMAGE_SECURE_BASE_URL).isNullOrEmpty())
+            preferences.getData(SharedPreferenceKeys.IMAGE_SECURE_BASE_URL)
+        else SharedPreferenceKeys.IMAGE_SECURE_BASE_URL_DEFAULT + SharedPreferenceKeys.IMAGE_SIZE_DEFAULT
 
 
     fun getMovies() {

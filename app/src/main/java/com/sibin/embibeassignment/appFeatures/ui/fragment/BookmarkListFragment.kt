@@ -92,7 +92,7 @@ class BookmarkListFragment : BaseFragment() {
         recycler_view.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         moviesAdapter =
-            MovieListAdapter(bookmarkViewModel.imageBaseUrl) { movie ->
+            MovieListAdapter(bookmarkViewModel.imageBaseUrl!!) { movie ->
                 logDebug("movie $movie")
                 bookmarkViewModel.addOrRemoveBookmark(movie)
                 moviesAdapter.data.remove(movie)

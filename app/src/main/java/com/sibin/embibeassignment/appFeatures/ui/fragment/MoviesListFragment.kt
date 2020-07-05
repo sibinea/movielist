@@ -99,7 +99,7 @@ class MoviesListFragment : BaseFragment() {
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         moviesAdapter =
             MovieListAdapter(
-                moviesViewModel.imageBaseUrl
+                moviesViewModel.imageBaseUrl!!
             ) { movie ->
                 logDebug("movie $movie")
                 moviesViewModel.addOrRemoveBookmark(movie)
