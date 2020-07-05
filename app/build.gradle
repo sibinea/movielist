@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.sibin.embibeassignment"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField "String", 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", 'API_KEY', '"cd090d05f0da4c5f79c0870636e87a3b"'
+
+        }
+        release {
+            minifyEnabled false
+            buildConfigField "String", 'BASE_URL', '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", 'API_KEY', '"cd090d05f0da4c5f79c0870636e87a3b"'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def applicationDependencies = rootProject.ext.mainApplication
+    def unitTestDependencies = rootProject.ext.unitTesting
+    def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
+
+    //Compile time dependencies
+    kapt applicationDependencies.archComponentsCompiler
+    kapt applicationDependencies.daggerCompiler
+    kapt applicationDependencies.roomCompiler
+    compileOnly applicationDependencies.javaxAnnotation
+    compileOnly applicationDependencies.javaxInject
+
+    //Application dependencies
+    implementation applicationDependencies.kotlin
+    implementation applicationDependencies.kotlinCoroutines
+    implementation applicationDependencies.kotlinCoroutinesAndroid
+    implementation applicationDependencies.ktxCore
+    implementation applicationDependencies.androidXCore
+    implementation applicationDependencies.appCompat
+    implementation applicationDependencies.constraintLayout
+    implementation applicationDependencies.recyclerView
+    implementation applicationDependencies.recyclerViewSelection
+    implementation applicationDependencies.googleMaterial
+    implementation applicationDependencies.archComponentsViewModel
+    implementation applicationDependencies.archComponentsLiveData
+    implementation applicationDependencies.archComponentsExtensions
+    implementation applicationDependencies.glide
+    implementation applicationDependencies.dagger
+    implementation applicationDependencies.retrofit
+    implementation applicationDependencies.okhttpLoggingInterceptor
+    implementation applicationDependencies.room
+    implementation applicationDependencies.roomCoroutines
+
+    //Unit/Integration tests dependencies
+    testImplementation unitTestDependencies.kotlin
+    testImplementation unitTestDependencies.kotlinTest
+    testImplementation unitTestDependencies.robolectric
+    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.mockito
+    testImplementation unitTestDependencies.kluent
+
+    //Acceptance tests dependencies
+    androidTestImplementation acceptanceTestDependencies.testRunner
+    androidTestImplementation acceptanceTestDependencies.testRules
+    androidTestImplementation acceptanceTestDependencies.espressoCore
+    androidTestImplementation acceptanceTestDependencies.espressoIntents
+
+}

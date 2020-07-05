@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">EmbibeAssignment</string>
+    <string name="no_movies">No Movies are available</string>
+    <string name="failure_network_connection">No Network Connection.</string>
+    <string name="failure_server_error">Server Error</string>
+    <string name="search">Search</string>
+    <string name="bookmarked">Bookmarked</string>
+    <string name="query_hint">Search movies</string>
+    <string name="bookmarks">Your favorites</string>
+    <string name="movie_list">Movie List</string>
+    <string name="search_empty">No result found.</string>
+    <string name="no_fav">You don\'t have any favoraties movies. Please add it.</string>
+</resources>
